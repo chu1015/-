@@ -46,7 +46,8 @@ body {
 
 #reload {
     position: absolute;
-    left: 600px;
+    left: 0px;
+    right: 0px;
     top: 10px;
     padding: auto;
     margin: auto;
