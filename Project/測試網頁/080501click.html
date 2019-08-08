@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500px" height="500px"></canvas>
+    <canvas id="myCanvas1" width="500px" height="500px"></canvas>
+    <canvas id="myCanvas2" width="500px" height="500px"></canvas>
+
+
+
+    <script>
+        // let canvas = document.querySelector('#myCanvas');
+        // let context = canvas.getContext('2d');
+        window.onload = function () {
+            let canvas = document.querySelector("#myCanvas");
+            canvas.addEventListener("mousedown", draw, false);
+        }
+
+        var i = 0;
+
+        function draw(event) {
+            let canvas = document.querySelector('#myCanvas');
+            let context = canvas.getContext('2d');
+
+            x = event.pageX;
+            y = event.pageY;
+
+            switch (i) {
+                case 1:
+                    context.fillStyle = "red";
+                    break;
+                case 2:
+                    context.fillStyle = "green";
+                    break;
+                case 3:
+                    context.fillStyle = "#6a6aff";
+                    break;
+                case 4:
+                    context.fillStyle = "	#4efeb3";
+                    break;
+                case 5:
+                    context.fillStyle = "		#ffff37";
+                    break;
+                default:
+                    context.fillStyle = "black";
+            }
+
+            context.beginPath();
+            context.fillRect(x - 25, y - 25, 50, 50);
+            context.stroke();
+            context.fill();
+            i++;
+            if (i == 6) {
+                i = i - 6;
+            }
+        }
+        //---------------------------------------------------
+        let canvas = document.querySelector('#myCanvas1');
+        let context = canvas.getContext('2d');
+
+        context.fillStyle = "rgb(200,0,0)";
+        context.fillRect(10, 10, 55, 50);
+
+        context.fillStyle = "rgba(0, 0, 200, 0.5)"; //透明度  0.5
+        context.fillRect(30, 30, 55, 50);
+
+        //------------------------------------
+        let canvas1 = document.querySelector('#myCanvas2');
+        let context1 = canvas1.getContext('2d');
+
+
+
+
+        context1.fillRect(25, 25, 100, 100);
+        context1.clearRect(45, 45, 60, 60);
+        context1.strokeRect(50, 50, 50, 50);
+    </script>
+</body>
+
+</html>

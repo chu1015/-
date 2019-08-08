@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+    <style>
+        body {
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0
+        }
+
+        #myCanvas {
+            border: 2px solid black;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" width="450px" height="450px"></canvas>
+    <img id="background" src="../Project/image/cat.png" alt="" style="display: none">
+
+    <script>
+        window.onload = init();
+
+        var cvs = document.getElementById("myCanvas");
+        var ctx = cvs.getContext("2d");
+        arr = [{ //左上 0
+                x: 0,
+                y: 0,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //中上1
+                x: 150,
+                y: 0,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //右上2
+                x: 300,
+                y: 0,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //左中3
+                x: 0,
+                y: 150,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //正中4
+                x: 150,
+                y: 150,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //右中5
+                x: 300,
+                y: 150,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //左下6
+                x: 0,
+                y: 300,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //中下7
+                x: 150,
+                y: 300,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+            { //右下8
+                x: 300,
+                y: 300,
+                width: 150,
+                height: 150,
+                color: "blue"
+            },
+        ];
+
+
+        // ctx.globalCompositeOperation = "dark";
+
+        function init() {
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+            // ctx.drawImage(background, 0, 0, 450, 450);
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, 450, 450);
+
+            ctx.globalCompositeOperation = "dark";
+            ctx.fillStyle = "rgba(0,0,0,0)";
+            ctx.moveTo(150, 0);
+            ctx.lineTo(150, 450);
+            // ctx.stroke();
+
+            ctx.moveTo(300, 0);
+            ctx.lineTo(300, 450);
+            // ctx.stroke();
+
+            ctx.moveTo(0, 150);
+            ctx.lineTo(450, 150);
+            // ctx.stroke();
+
+            ctx.moveTo(0, 300);
+            ctx.lineTo(450, 300);
+            ctx.stroke();
+        }
+
+        // draw();
+
+        // _____________________________________________________
+        cvs.addEventListener('click', function (e) {
+            p = getEventPosition(e);
+
+            if (p.x <= arr[0].width && p.y <= arr[0].height) {
+                color0();
+                color1();
+                color3();
+                line();
+                console.log('1', p);
+                console.log(arr[0].color);
+                console.log(arr[1].color);
+                console.log(arr[3].color);
+            }
+
+            if (p.x > arr[0].width && p.x <= (arr[1].width + arr[1].x) &&
+                p.y <= arr[0].height) {
+                color0();
+                color1();
+                color2();
+                color4();
+                line();
+                console.log('2', p)
+
+            }
+            if (p.x > (arr[1].width + arr[1].x) && p.x <= (arr[2].width + arr[2].x) &&
+                p.y <= arr[0].height) {
+                color1();
+                color2();
+                color5();
+                line();
+                console.log('3', p)
+            }
+
+            if (p.x <= arr[0].width && p.y > arr[0].height && p.y <= (arr[3].height + arr[3].y)) {
+                color0();
+                color3();
+                color4();
+                color6();
+                line();
+                console.log('4', p);
+            }
+            if (p.x > arr[0].width && p.x <= (arr[1].width + arr[1].x) && p.y > arr[0].height && p.y <= (arr[3]
+                    .height + arr[3].height)) {
+                color1();
+                color3();
+                color4();
+                color5();
+                color7();
+                line();
+                console.log('5', p);
+            }
+            if (p.x > (arr[1].width + arr[1].x) && p.x <= (arr[2].width + arr[2].x) && p.y > arr[0].height && p
+                .y <= (arr[3].height + arr[3].height)) {
+                color2();
+                color4();
+                color5();
+                color8();
+                line();
+                console.log('6', p);
+            }
+
+            if (p.x <= arr[0].width && p.y > (arr[3].height + arr[3].y) && p.y <= (arr[6].height + arr[6].y)) {
+                color3();
+                color6();
+                color7();
+                line();
+                console.log('7', p);
+            }
+            if (p.x > arr[0].width && p.x <= (arr[1].width + arr[1].x) && p.y > (arr[3].height + arr[3].y) && p
+                .y <= (arr[6].height + arr[6].y)) {
+                color4();
+                color6();
+                color7();
+                color8();
+                line();
+                console.log('8', p);
+            }
+            if (p.x > (arr[1].width + arr[1].x) && p.x <= (arr[2].width + arr[2].x) && p.y > (arr[3].height +
+                    arr[3].y) && p.y <= (arr[6].height + arr[6].y)) {
+                color5();
+                color7();
+                color8();
+                line();
+                console.log('9', p);
+            }
+            success();
+
+        }, false);
+
+        function getEventPosition(ev) {
+            var x, y;
+            if (ev.layerX || ev.layerX == 0) {
+                x = ev.layerX;
+                y = ev.layerY;
+            } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+                x = ev.offsetX;
+                y = ev.offsetY;
+            }
+            return {
+                x: x,
+                y: y
+            };
+        };
+        // _____________________________________________________
+        function line() {
+
+            ctx.globalCompositeOperation = "dark";
+            ctx.fillStyle = "rgba(0,0,0,0)";
+            ctx.moveTo(150, 0);
+            ctx.lineTo(150, 450);
+            // ctx.stroke();
+
+            ctx.moveTo(300, 0);
+            ctx.lineTo(300, 450);
+            // ctx.stroke();
+
+            ctx.moveTo(0, 150);
+            ctx.lineTo(450, 150);
+            // ctx.stroke();
+
+            ctx.moveTo(0, 300);
+            ctx.lineTo(450, 300);
+            ctx.stroke();
+        }
+        //________________________________________________________________
+        function color0() {
+            if (arr[0].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[0].x, arr[0].y, 150, 150);
+                arr[0].color = "red";
+            } else if(arr[0].color == "red") {
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(0, 0, 150, 150);
+                arr[0].color = "blue";
+                console.log(arr[0].color);
+            };
+        };
+
+        function color1() {
+            if (arr[1].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[1].x, arr[1].y, 150, 150);
+                arr[1].color = "red";
+            } else if(arr[1].color == "red") {
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[1].x, arr[1].y, 150, 150);
+                arr[1].color = "blue";
+            };
+        };
+
+        function color2() {
+            if (arr[2].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[2].x, arr[2].y, 150, 150);
+                arr[2].color = "red";
+            } else if(arr[2].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[2].x, arr[2].y, 150, 150);
+                arr[2].color = "blue";
+            };
+        };
+
+        function color3() {
+            if (arr[3].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[3].x, arr[3].y, 150, 150);
+                arr[3].color = "red";
+            } else if(arr[3].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[3].x, arr[3].y, 150, 150);
+                arr[3].color = "blue";
+            };
+        };
+
+        function color4() {
+            if (arr[4].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[4].x, arr[4].y, 150, 150);
+                arr[4].color = "red";
+            } else if(arr[4].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[4].x, arr[4].y, 150, 150);
+                arr[4].color = "blue";
+            };
+        };
+
+        function color5() {
+            if (arr[5].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[5].x, arr[5].y, 150, 150);
+                arr[5].color = "red";
+            } else if(arr[5].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[5].x, arr[5].y, 150, 150);
+                arr[5].color = "blue";
+            };
+        };
+
+        function color6() {
+            if (arr[6].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[6].x, arr[6].y, 150, 150);
+                arr[6].color = "red";
+            } else if(arr[6].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[6].x, arr[6].y, 150, 150);
+                arr[6].color = "blue";
+            };
+        };
+
+        function color7() {
+            if (arr[7].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[7].x, arr[7].y, 150, 150);
+                arr[7].color = "red";
+            } else if(arr[7].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[7].x, arr[7].y, 150, 150);
+                arr[7].color = "blue";
+            };
+        };
+
+        function color8() {
+            if (arr[8].color == "blue") {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.fillRect(arr[8].x, arr[8].y, 150, 150);
+                arr[8].color = "red";
+            } else if(arr[8].color == "red"){
+                ctx.beginPath();
+                ctx.fillStyle = "blue";
+                ctx.fillRect(arr[8].x, arr[8].y, 150, 150);
+                arr[8].color = "blue";
+            };
+        };
+
+        function success(){
+            if(arr[0].color=="red" &&arr[1].color=="red" &&arr[2].color=="red" &&arr[3].color=="red"
+            &&arr[4].color=="red"&&arr[5].color=="red"&&arr[6].color=="red"&&arr[7].color=="red"&&arr[8].color=="red")
+            {
+                alert("win");
+                console.log(arr[0].color);
+                console.log(arr[1].color);
+                console.log(arr[2].color);
+                console.log(arr[3].color);
+                console.log(arr[4].color);
+                console.log(arr[5].color);
+                console.log(arr[6].color);
+                console.log(arr[7].color);
+                console.log(arr[8].color);
+            }
+        };
+    </script>
+
+</body>
+
+</html>

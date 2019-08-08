@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+
+    <style>
+        #backGround {
+            position: absolute;
+            border: 2px solid black;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        #myCanvas {
+            position: absolute;
+            border: 2px solid black;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <label for="">輸入數字3~5:</label>
+        <input type="text" name="" id="inputStr">
+        <button onclick="show()">設定</button>
+        <!-- <p id="demo">頻道的中文</p> -->
+    </div>
+
+    <canvas id="backGround" width="540px" height="540px"></canvas>
+    <canvas id="myCanvas" width="540" height="540px"></canvas>
+    <img id="bgdImg" src="../image/cat.png" alt="" style="display: none">
+    <script>
+        var c1 = document.getElementById("backGround");
+        var ctx1 = c1.getContext('2d');
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext('2d');
+
+        window.onload = init();
+
+        function init() {
+            ctx1.drawImage(bgdImg, 0, 0, 540, 540);
+        }
+
+        function show() {
+            var str = document.getElementById("inputStr").value;
+            switch (str) {
+                case '3':
+                    ctx.moveTo(180, 0);
+                    ctx.lineTo(180, 540);
+                    ctx.moveTo(360, 0);
+                    ctx.lineTo(360, 540);
+                    ctx.moveTo(0, 180);
+                    ctx.lineTo(540, 180);
+                    ctx.moveTo(0, 360);
+                    ctx.lineTo(540, 360);
+                    ctx.stroke();
+                    break;
+                case '4':
+                    ctx.moveTo(140, 0);
+                    ctx.lineTo(140, 540);
+                    ctx.moveTo(280, 0);
+                    ctx.lineTo(280, 540);
+                    ctx.moveTo(420, 0);
+                    ctx.lineTo(420, 540);
+                    ctx.moveTo(0, 140);
+                    ctx.lineTo(540, 140);
+                    ctx.moveTo(0, 280);
+                    ctx.lineTo(540, 280);
+                    ctx.moveTo(0, 420);
+                    ctx.lineTo(540, 420);
+                    ctx.stroke();
+                    break;
+                case '5':
+                    ctx.moveTo(108, 0);
+                    ctx.lineTo(108, 540);
+                    ctx.moveTo(216, 0);
+                    ctx.lineTo(216, 540);
+                    ctx.moveTo(324, 0);
+                    ctx.lineTo(324, 540);
+                    ctx.moveTo(432, 0);
+                    ctx.lineTo(432, 540);
+                    ctx.moveTo(0, 108);
+                    ctx.lineTo(540, 108);
+                    ctx.moveTo(0, 216);
+                    ctx.lineTo(540, 216);
+                    ctx.moveTo(0, 324);
+                    ctx.lineTo(540, 324);
+                    ctx.moveTo(0, 432);
+                    ctx.lineTo(540, 432);
+                    ctx.stroke();
+                    break;
+            }
+            hidden;
+        }
+    </script>
+</body>
+
+</html>

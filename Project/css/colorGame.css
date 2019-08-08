@@ -1,0 +1,30 @@
+
+        body {
+            background-image: url("../image/test.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat; 
+            background-color: black;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0
+        }
+
+        #myCanvas {
+            border: 2px solid black;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        #reload{
+            position:absolute;
+            left:600px;
+            top:0px;
+            padding: auto;
+        }
+   

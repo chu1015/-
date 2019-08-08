@@ -1,0 +1,53 @@
+.name {
+    position: absolute;
+    color: aqua;
+    top: 10px;
+    left: 60px;
+    margin: auto;
+}
+
+.Description {
+    position: absolute;
+    color: aqua;
+    margin: auto;
+    top:100px;
+    left:30px;
+}
+
+body {
+    background-image: url("../image/background.jpg");
+    background-color: black;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
+#myCanvas {
+    border: 2px solid black;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#backGround {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#reload {
+    position: absolute;
+    left: 600px;
+    top: 10px;
+    padding: auto;
+    margin: auto;
+}
